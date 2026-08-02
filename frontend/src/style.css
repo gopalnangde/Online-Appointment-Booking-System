@@ -1,0 +1,690 @@
+/* =============================================
+   ONLINE APPOINTMENT BOOKING SYSTEM
+   Modern Medical / SaaS Dashboard Design System
+   (Matching Electric Blue & Clean Card Layout)
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ----- Design Tokens ----- */
+:root {
+  --color-primary: #0066FF;
+  --color-primary-dark: #0052CC;
+  --color-primary-light: #E6F0FF;
+  --color-primary-pale: #F0F6FF;
+  --color-white: #FFFFFF;
+  --color-off-white: #F4F7FC;
+  --color-dark: #0F172A;
+  --color-dark-secondary: #334155;
+  --color-gray-100: #F8FAFC;
+  --color-gray-200: #E2E8F0;
+  --color-gray-300: #CBD5E1;
+  --color-gray-400: #94A3B8;
+  --color-gray-500: #64748B;
+  --color-gray-600: #475569;
+  
+  --color-danger: #EF4444;
+  --color-danger-light: #FEF2F2;
+  --color-success: #10B981;
+  --color-success-light: #ECFDF5;
+  --color-warning: #F59E0B;
+  --color-warning-light: #FFFBEB;
+  --color-info: #3B82F6;
+
+  --font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --shadow-xl: 0 20px 40px rgba(15, 23, 42, 0.12);
+  --transition: all 0.2s ease-in-out;
+}
+
+/* ----- Reset & Base ----- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-off-white);
+  color: var(--color-dark);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* ----- Container & Layout ----- */
+.container {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.dashboard-wrapper {
+  padding: 24px 0 60px;
+  min-height: calc(100vh - 90px);
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 1024px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+
+/* ----- Page Header ----- */
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-subtitle {
+  font-size: 0.92rem;
+  color: var(--color-gray-500);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* ----- Base Card Styling ----- */
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* ----- PrimeVue Button & Component Overrides ----- */
+.p-button {
+  border-radius: var(--radius-full) !important;
+  font-family: var(--font-family) !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  padding: 0.6rem 1.4rem !important;
+  transition: var(--transition) !important;
+  box-shadow: none !important;
+}
+
+.p-button-primary {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: var(--color-white) !important;
+}
+
+.p-button-primary:hover {
+  background-color: var(--color-primary-dark) !important;
+  border-color: var(--color-primary-dark) !important;
+}
+
+.p-button-outlined.p-button-secondary {
+  border-color: var(--color-gray-300) !important;
+  color: var(--color-gray-600) !important;
+  background: var(--color-white) !important;
+}
+
+.p-button-outlined.p-button-secondary:hover {
+  background: var(--color-gray-100) !important;
+  border-color: var(--color-gray-400) !important;
+  color: var(--color-dark) !important;
+}
+
+/* PrimeVue Input Controls */
+.p-inputtext,
+.p-dropdown,
+.p-calendar,
+.form-input,
+.form-select,
+.form-textarea {
+  border-radius: var(--radius-full) !important;
+  border: 1px solid var(--color-gray-200) !important;
+  padding: 0.65rem 1.25rem !important;
+  font-family: var(--font-family) !important;
+  font-size: 0.9rem !important;
+  color: var(--color-dark) !important;
+  background: var(--color-white) !important;
+  transition: var(--transition) !important;
+}
+
+.form-textarea,
+.p-inputtextarea {
+  border-radius: var(--radius-md) !important;
+}
+
+.p-inputtext:focus,
+.p-dropdown:not(.p-disabled).p-focus,
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.15) !important;
+  outline: none !important;
+}
+
+/* PrimeVue Tags / Badges */
+.p-tag {
+  border-radius: var(--radius-full) !important;
+  padding: 0.35rem 0.85rem !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+}
+
+.p-tag.p-tag-primary {
+  background: var(--color-primary-light) !important;
+  color: var(--color-primary) !important;
+}
+
+.p-tag.p-tag-success {
+  background: var(--color-success-light) !important;
+  color: var(--color-success) !important;
+}
+
+.p-tag.p-tag-warn {
+  background: var(--color-warning-light) !important;
+  color: var(--color-warning) !important;
+}
+
+.p-tag.p-tag-danger {
+  background: var(--color-danger-light) !important;
+  color: var(--color-danger) !important;
+}
+
+.p-tag.p-tag-info {
+  background: var(--color-primary-pale) !important;
+  color: var(--color-primary-dark) !important;
+}
+
+/* PrimeVue Dialog Overrides */
+.p-dialog {
+  border-radius: var(--radius-xl) !important;
+  overflow: hidden !important;
+  box-shadow: var(--shadow-xl) !important;
+  border: 1px solid var(--color-gray-200) !important;
+}
+
+.p-dialog .p-dialog-header {
+  border-bottom: 1px solid var(--color-gray-200) !important;
+  padding: 1.25rem 1.75rem !important;
+  background: var(--color-white) !important;
+}
+
+.p-dialog .p-dialog-content {
+  padding: 1.75rem !important;
+  background: var(--color-white) !important;
+}
+
+/* ----- Custom Buttons (Fallback) ----- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  outline: none;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+}
+
+.btn-outline {
+  background: var(--color-white);
+  border-color: var(--color-gray-300);
+  color: var(--color-dark-secondary);
+}
+
+.btn-outline:hover {
+  background: var(--color-gray-100);
+  border-color: var(--color-gray-400);
+}
+
+.btn-sm {
+  padding: 0.45rem 1rem;
+  font-size: 0.82rem;
+}
+
+.btn-lg {
+  padding: 0.85rem 1.8rem;
+  font-size: 1rem;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* ----- Form Layout Helpers ----- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-dark-secondary);
+}
+
+/* ----- Table Styling (Dashboard Style) ----- */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+  background: var(--color-white);
+  box-shadow: var(--shadow-sm);
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.custom-table th {
+  background: var(--color-gray-100);
+  color: var(--color-gray-500);
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.custom-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--color-gray-200);
+  color: var(--color-dark);
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+.custom-table tbody tr {
+  transition: var(--transition);
+}
+
+.custom-table tbody tr:hover {
+  background: var(--color-primary-pale);
+}
+
+.custom-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ----- Provider Cards (Matching Grid UI) ----- */
+.provider-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.provider-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-light);
+}
+
+.provider-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.provider-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 10px rgba(0, 102, 255, 0.2);
+}
+
+.provider-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: var(--color-gray-600);
+}
+
+.provider-info-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.provider-info-row i {
+  color: var(--color-primary);
+  width: 18px;
+}
+
+/* ----- Profile Page Layout ----- */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 868px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.profile-sidebar {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-avatar-lg {
+  width: 84px;
+  height: 84px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 2rem;
+  margin: 0 auto 16px;
+  box-shadow: 0 6px 18px rgba(0, 102, 255, 0.25);
+}
+
+.profile-details {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+  padding: 28px 32px;
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-details h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--color-dark);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.detail-item label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.detail-item p {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-dark);
+}
+
+/* ----- Empty State ----- */
+.empty-state {
+  text-align: center;
+  padding: 60px 24px;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+  box-shadow: var(--shadow-sm);
+}
+
+.empty-state h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  color: var(--color-gray-500);
+  margin-bottom: 20px;
+  font-size: 0.92rem;
+}
+
+/* ----- Auth Layout (Sign In / Register) ----- */
+.auth-layout {
+  min-height: 100vh;
+  display: flex;
+  background: var(--color-off-white);
+}
+
+.auth-visual {
+  flex: 1;
+  background: linear-gradient(135deg, #0052CC 0%, #0066FF 50%, #3B82F6 100%);
+  color: var(--color-white);
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.auth-visual h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.auth-visual p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.auth-form-side {
+  width: 520px;
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.auth-form-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-form-container h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: var(--color-dark);
+}
+
+.auth-form-container .subtitle {
+  color: var(--color-gray-500);
+  font-size: 0.9rem;
+  margin-bottom: 28px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.auth-footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--color-gray-500);
+}
+
+.auth-footer a {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .auth-visual {
+    display: none;
+  }
+  .auth-form-side {
+    width: 100%;
+  }
+}
+
+/* Custom Modern Alert Messages (PrimeVue PMessage) */
+.p-message {
+  margin-bottom: 16px !important;
+  border-radius: var(--radius-md) !important;
+  border: 1px solid transparent !important;
+  padding: 12px 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+.p-message .p-message-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 0 !important;
+}
+
+.p-message .p-message-icon {
+  font-size: 1.25rem !important;
+  margin-right: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.p-message .p-message-detail,
+.p-message .p-message-text {
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+}
+
+/* Error Alert */
+.p-message-error {
+  background-color: #FEF2F2 !important;
+  border-color: #FCA5A5 !important;
+  color: #991B1B !important;
+}
+
+.p-message-error .p-message-icon {
+  color: #DC2626 !important;
+}
+
+/* Success Alert */
+.p-message-success {
+  background-color: #F0FDF4 !important;
+  border-color: #86EFAC !important;
+  color: #166534 !important;
+}
+
+.p-message-success .p-message-icon {
+  color: #16A34A !important;
+}
+
+/* Info Alert */
+.p-message-info {
+  background-color: #EFF6FF !important;
+  border-color: #93C5FD !important;
+  color: #1E40AF !important;
+}
+
+.p-message-info .p-message-icon {
+  color: #2563EB !important;
+}
+
+/* Warn Alert */
+.p-message-warn {
+  background-color: #FFFBEB !important;
+  border-color: #FDE68A !important;
+  color: #92400E !important;
+}
+
+.p-message-warn .p-message-icon {
+  color: #D97706 !important;
+}
