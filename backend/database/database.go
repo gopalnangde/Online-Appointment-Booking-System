@@ -18,12 +18,12 @@ var DB *gorm.DB
 // It uses the DSN (Data Source Name) constructed from the provided Config.
 func Connect(cfg *config.Config) {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local&tls=preferred",
-	cfg.DBUser,
-	cfg.DBPassword,
-	cfg.DBHost,
-	cfg.DBPort,
-	cfg.DBName,
-)
+		cfg.DBUser,
+		cfg.DBPassword,
+		cfg.DBHost,
+		cfg.DBPort,
+		cfg.DBName,
+	)
 
 	var err error
 	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
